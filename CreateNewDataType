@@ -1,0 +1,42 @@
+class Strint(int):
+
+    def __lt__(self, other):
+        return int(str(self)[-1]) < int(str(other)[-1])
+
+    def __gt__(self, other):
+        return int(str(self)[-1]) > int(str(other)[-1])
+
+    def __le__(self, other):
+        return int(str(self)[-1]) <= int(str(other)[-1])
+
+    def __ge__(self, other):
+        return int(str(self)[-1]) >= int(str(other)[-1])
+
+    def __eq__(self, other):
+        return int(str(self)[-1]) == int(str(other)[-1])
+
+    def __ne__(self, other):
+        return int(str(self)[-1]) != int(str(other)[-1])
+
+    def __add__(self, other):
+        return int(str(self) + str(other))
+
+    def __sub__(self, other):
+        if len(self) < len(other):
+            raise Exception('The subtraction is not valid!')
+        else:
+            if str(self)[-len(str(other)):] == str(other):
+                if str(self)[:-len(str(other))] == '':
+                    return 0
+                else:
+                    return int(str(self)[:-len(str(other))])
+            else:
+                raise Exception('The subtraction is not valid!')
+    def __len__(self):
+        return len(str(self))
+
+    def __call__(self):
+        new_self = str()
+        for i in str(self):
+            new_self += chr(1776 + (ord(i) - 48))
+        return new_self
